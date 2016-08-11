@@ -12,7 +12,7 @@ class DashBoard extends Component {
         <HeaderContainer />
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 project-container">
               <ProjectList />
             </div>
 

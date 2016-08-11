@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Project from './Project'
+
 import './ProjectList.css';
 
 class ProjectList extends Component {
@@ -11,11 +13,15 @@ class ProjectList extends Component {
         <div className="row">
           <div className="col-xs-7">
 
-            <div className="panel panel-info">
-              <div className="panel-body">
-                Project 1
-              </div>
-            </div>
+            <Project />
+            <Project />
+            <Project />
+            <Project />
+            <Project />
+            <Project />
+            <Project />
+            <Project />
+            <Project />
 
           </div>
         </div>
