@@ -17,7 +17,7 @@ class DashBoard extends Component {
             </div>
 
             <div className="col-md-6 hidden-sm hidden-xs">
-              <h3 className="lead">Something else</h3>
+              <h3 className="lead">{"Something else"}</h3>
             </div>
           </div>
         </div>
