@@ -11,14 +11,24 @@ class ProjectList extends Component {
     super(props, context);
     this.state = {
       showInput: false,
+      projects: [1, 2, 3, 4, 5],
     }
 
-    this.editOnClick = this.editOnClick.bind(this);
+    this.editOnClick     = this.editOnClick.bind(this);
+    this.displayProjects = this.displayProjects.bind(this);
   }
 
   editOnClick() {
     this.setState({
       showInput: true
+    })
+  }
+
+  displayProjects() {
+    return this.state.projects.map((project) => {
+      return (
+        <Project title={project} />
+      )
     })
   }
 
@@ -45,11 +55,7 @@ class ProjectList extends Component {
         <div className="row">
           <div className="col-xs-7">
 
-            <Project />
-            <Project />
-            <Project />
-            <Project />
-            <Project />
+            {this.displayProjects()}
 
             {inputOrButton}
 
