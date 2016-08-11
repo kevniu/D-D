@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import './Project.css';
 
@@ -7,11 +7,16 @@ class Project extends Component {
     return (
       <div className="panel panel-primary">
         <div className="panel-body">
-          Project 1
+          Project {this.props.title}
         </div>
       </div>
     );
   }
+}
+
+
+Project.propTypes = {
+  title: PropTypes.any,
 }
 
 export default Project;

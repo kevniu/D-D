@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import Project        from './Project'
-import ProjectBuilder from './ProjectBuilder'
+import Project           from './Project'
+import ProjectBuilder    from './ProjectBuilder'
+import ProjectInputPanel from './ProjectInputPanel'
 
 import './ProjectList.css';
 
@@ -11,9 +12,34 @@ class ProjectList extends Component {
     super(props, context);
     this.state = {
       showInput: false,
+      projects: [1, 2, 3, 4, 5],
+      newProjectInput: false,
     }
 
-    this.editOnClick = this.editOnClick.bind(this);
+    this.editOnClick        = this.editOnClick.bind(this);
+    this.displayProjects    = this.displayProjects.bind(this);
+    this.projectInputChange = this.projectInputChange.bind(this);
+    this.saveProjectTitle   = this.saveProjectTitle.bind(this);
+  }
+
+  projectInputChange(event) {
+    this.setState({
+      newProjectInput: event.target.value,
+    })
+  }
+
+  saveProjectTitle() {
+    if (this.state.newProjectInput) {
+      this.state.projects.push(this.state.newProjectInput);
+      this.setState({
+        showInput: false,
+        newProjectInput: false,
+      })
+    }else {
+      this.setState({
+        showInput: false,
+      })
+    }
   }
 
   editOnClick() {
@@ -22,22 +48,16 @@ class ProjectList extends Component {
     })
   }
 
-  displayNewProjectInputField() {
-    return (
-      <div className="panel panel-success">
-        <div className="panel-body">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="New project name"
-          />
-        </div>
-      </div>
-    )
+  displayProjects() {
+    return this.state.projects.map((project, index) => {
+      return (
+        <Project key={index} title={project} />
+      )
+    })
   }
 
   render() {
-    const inputOrButton = this.state.showInput ? this.displayNewProjectInputField() : <ProjectBuilder editOnClick={this.editOnClick} />
+    const inputOrButton = this.state.showInput ? <ProjectInputPanel saveProjectTitle={this.saveProjectTitle} projectInputChange={this.projectInputChange} /> : <ProjectBuilder editOnClick={this.editOnClick} />
     return (
       <div>
         <h3 className="lead">Projects</h3>
@@ -45,11 +65,7 @@ class ProjectList extends Component {
         <div className="row">
           <div className="col-xs-7">
 
-            <Project />
-            <Project />
-            <Project />
-            <Project />
-            <Project />
+            {this.displayProjects()}
 
             {inputOrButton}
 
