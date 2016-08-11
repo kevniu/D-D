@@ -10,17 +10,34 @@ class ProjectList extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      show: false,
+      showInput: false,
     }
 
     this.editOnClick = this.editOnClick.bind(this);
   }
 
   editOnClick() {
-    console.log("called")
+    this.setState({
+      showInput: true
+    })
+  }
+
+  displayNewProjectInputField() {
+    return (
+      <div className="panel panel-success">
+        <div className="panel-body">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="New project name"
+          />
+        </div>
+      </div>
+    )
   }
 
   render() {
+    const inputOrButton = this.state.showInput ? this.displayNewProjectInputField() : <ProjectBuilder editOnClick={this.editOnClick} />
     return (
       <div>
         <h3 className="lead">Projects</h3>
@@ -34,7 +51,7 @@ class ProjectList extends Component {
             <Project />
             <Project />
 
-            <ProjectBuilder editOnClick={this.editOnClick} />
+            {inputOrButton}
 
           </div>
         </div>
