@@ -7,12 +7,25 @@ class ProjectInputPanel extends Component {
     return (
       <div className="panel panel-success">
         <div className="panel-body">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="New project name"
-            onChange={this.props.projectInputChange}
-          />
+
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="New project name"
+              onChange={this.props.projectInputChange}
+            />
+            <span className="input-group-btn">
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={this.props.saveProjectTitle}
+              >
+                Create
+              </button>
+            </span>
+          </div>
+
         </div>
       </div>
     );
@@ -21,6 +34,7 @@ class ProjectInputPanel extends Component {
 
 ProjectInputPanel.propTypes = {
   projectInputChange: PropTypes.func.isRequired,
+  saveProjectTitle: PropTypes.func.isRequired,
 }
 
 export default ProjectInputPanel;
