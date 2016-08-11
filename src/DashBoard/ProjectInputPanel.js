@@ -1,11 +1,29 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 
 import './ProjectInputPanel.css';
 
 class ProjectInputPanel extends Component {
+
+  componentDidMount() {
+    window.addEventListener('click', this.handleDocumentClick);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.handleDocumentClick);
+  }
+
+  handleDocumentClick = (evt) => {
+    const area = ReactDOM.findDOMNode(this.refs.inputPanel);
+
+    if (!area.contains(evt.target)) {
+      this.props.closeProjectInputPanel()
+    }
+  }
+
   render() {
     return (
-      <div className="panel panel-success">
+      <div className="panel panel-success" ref="inputPanel">
         <div className="panel-body">
 
           <div className="input-group">

@@ -16,11 +16,13 @@ class ProjectList extends Component {
       newProjectInput: false,
     }
 
-    this.editOnClick        = this.editOnClick.bind(this);
-    this.displayProjects    = this.displayProjects.bind(this);
-    this.projectInputChange = this.projectInputChange.bind(this);
-    this.saveProjectTitle   = this.saveProjectTitle.bind(this);
+    this.closeProjectInputPanel = this.closeProjectInputPanel.bind(this);
+    this.editOnClick            = this.editOnClick.bind(this);
+    this.displayProjects        = this.displayProjects.bind(this);
+    this.projectInputChange     = this.projectInputChange.bind(this);
+    this.saveProjectTitle       = this.saveProjectTitle.bind(this);
   }
+
 
   projectInputChange(event) {
     this.setState({
@@ -43,9 +45,15 @@ class ProjectList extends Component {
   }
 
   editOnClick() {
-    this.setState({
-      showInput: true
-    })
+    if (!this.state.showInput) {
+      this.setState({
+        showInput: true,
+      })
+    }
+  }
+
+  closeProjectInputPanel() {
+
   }
 
   displayProjects() {
@@ -57,7 +65,7 @@ class ProjectList extends Component {
   }
 
   render() {
-    const inputOrButton = this.state.showInput ? <ProjectInputPanel saveProjectTitle={this.saveProjectTitle} projectInputChange={this.projectInputChange} /> : <ProjectBuilder editOnClick={this.editOnClick} />
+    const inputOrButton = this.state.showInput ? <ProjectInputPanel closeProjectInputPanel={this.closeProjectInputPanel} saveProjectTitle={this.saveProjectTitle} projectInputChange={this.projectInputChange} /> : <ProjectBuilder editOnClick={this.editOnClick} />
     return (
       <div>
         <h3 className="lead">Projects</h3>
