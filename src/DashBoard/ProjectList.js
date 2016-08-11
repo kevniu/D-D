@@ -13,10 +13,19 @@ class ProjectList extends Component {
     this.state = {
       showInput: false,
       projects: [1, 2, 3, 4, 5],
+      newProjectInput: false,
     }
 
-    this.editOnClick     = this.editOnClick.bind(this);
-    this.displayProjects = this.displayProjects.bind(this);
+    this.editOnClick        = this.editOnClick.bind(this);
+    this.displayProjects    = this.displayProjects.bind(this);
+    this.projectInputChange = this.projectInputChange.bind(this);
+  }
+
+  projectInputChange(event) {
+    console.log(event.target.value)
+    // this.setState({
+    //   newProjectInput: event.target.value,
+    // })
   }
 
   editOnClick() {
@@ -26,15 +35,15 @@ class ProjectList extends Component {
   }
 
   displayProjects() {
-    return this.state.projects.map((project) => {
+    return this.state.projects.map((project, index) => {
       return (
-        <Project title={project} />
+        <Project key={index} title={project} />
       )
     })
   }
 
   render() {
-    const inputOrButton = this.state.showInput ? <ProjectInputPanel /> : <ProjectBuilder editOnClick={this.editOnClick} />
+    const inputOrButton = this.state.showInput ? <ProjectInputPanel projectInputChange={this.projectInputChange} /> : <ProjectBuilder editOnClick={this.editOnClick} />
     return (
       <div>
         <h3 className="lead">Projects</h3>

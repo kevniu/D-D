@@ -11,6 +11,7 @@ class ProjectInputPanel extends Component {
             type="text"
             className="form-control"
             placeholder="New project name"
+            onChange={this.props.projectInputChange}
           />
         </div>
       </div>
@@ -19,7 +20,7 @@ class ProjectInputPanel extends Component {
 }
 
 ProjectInputPanel.propTypes = {
-  editOnClick: PropTypes.func.isRequired,
+  projectInputChange: PropTypes.func.isRequired,
 }
 
 export default ProjectInputPanel;

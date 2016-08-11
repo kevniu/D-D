@@ -15,8 +15,8 @@ class Project extends Component {
 }
 
 
-// Project.propTypes = {
-//   title:
-// }
+Project.propTypes = {
+  title: PropTypes.any,
+}
 
 export default Project;
