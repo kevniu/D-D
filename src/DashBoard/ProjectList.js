@@ -24,7 +24,7 @@ class ProjectList extends Component {
 
   displayNewProjectInputField() {
     return (
-      <div className="panel panel-info">
+      <div className="panel panel-success">
         <div className="panel-body">
           <input
             type="text"
