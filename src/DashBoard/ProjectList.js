@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import Project        from './Project'
-import ProjectBuilder from './ProjectBuilder'
+import Project           from './Project'
+import ProjectBuilder    from './ProjectBuilder'
+import ProjectInputPanel from './ProjectInputPanel'
 
 import './ProjectList.css';
 
@@ -32,22 +33,8 @@ class ProjectList extends Component {
     })
   }
 
-  displayNewProjectInputField() {
-    return (
-      <div className="panel panel-success">
-        <div className="panel-body">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="New project name"
-          />
-        </div>
-      </div>
-    )
-  }
-
   render() {
-    const inputOrButton = this.state.showInput ? this.displayNewProjectInputField() : <ProjectBuilder editOnClick={this.editOnClick} />
+    const inputOrButton = this.state.showInput ? <ProjectInputPanel /> : <ProjectBuilder editOnClick={this.editOnClick} />
     return (
       <div>
         <h3 className="lead">Projects</h3>
