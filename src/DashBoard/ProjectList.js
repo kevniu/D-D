@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
-import Project           from './Project'
-import ProjectBuilder    from './ProjectBuilder'
-import ProjectInputPanel from './ProjectInputPanel'
+import Project           from './Project';
+import ProjectBuilder    from './ProjectBuilder';
+import ProjectInputPanel from './ProjectInputPanel';
+
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend        from 'react-dnd-html5-backend';
 
 import './ProjectList.css';
+
 
 class ProjectList extends Component {
 
@@ -12,7 +16,7 @@ class ProjectList extends Component {
     super(props, context);
     this.state = {
       showInput: false,
-      projects: [1, 2, 3, 4, 5],
+      projects: [{number: 1}, {number: 2}, {number: 3}, {number:4}],
       newProjectInput: false,
     }
 
@@ -21,6 +25,8 @@ class ProjectList extends Component {
     this.displayProjects        = this.displayProjects.bind(this);
     this.projectInputChange     = this.projectInputChange.bind(this);
     this.saveProjectTitle       = this.saveProjectTitle.bind(this);
+
+    this.moveProject = this.moveProject.bind(this);
   }
 
   projectInputChange(event) {
@@ -59,13 +65,24 @@ class ProjectList extends Component {
     // console.log("here anywhere else")
   }
 
+  moveProject(dragIndex, hoverIndex) {
+    const projectArr = this.state.projects;
+    const dragProject = projectArr[dragIndex];
+    projectArr.splice(hoverIndex, 0, dragProject)
+
+    this.setState({
+      projects: projectArr,
+    })
+  }
+
   displayProjects() {
     return this.state.projects.map((project, index) => {
       return (
-        <Project key={index} title={project} />
+        <Project key={index} index={index} title={project.number} moveProject={this.moveProject} />
       )
     })
   }
+
 
   render() {
     const inputOrButton = this.state.showInput ? <ProjectInputPanel closeProjectInputPanel={this.closeProjectInputPanel} saveProjectTitle={this.saveProjectTitle} projectInputChange={this.projectInputChange} /> : <ProjectBuilder editOnClick={this.editOnClick} />
@@ -88,4 +105,4 @@ class ProjectList extends Component {
   }
 }
 
-export default ProjectList;
+export default DragDropContext(HTML5Backend)(ProjectList);
