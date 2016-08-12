@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-
-import ProjectList     from './ProjectList';
+import React, { Component, PropTypes } from 'react';
 
 import Helmet from "react-helmet";
 
-import './DashBoard.css';
+import './TaskBoard.css';
 
-class DashBoard extends Component {
+class TaskBoard extends Component {
   render() {
     return (
       <div className="container">
-        <Helmet title="DashBoard" />
+        <Helmet title="something" />
 
         <div className="row">
           <div className="col-md-6 project-container">
-            <ProjectList />
+            <h3 className="lead">{"Tasks"}</h3>
           </div>
 
           <div className="col-md-6 hidden-sm hidden-xs">
@@ -26,4 +24,9 @@ class DashBoard extends Component {
   }
 }
 
-export default DashBoard;
+
+TaskBoard.propTypes = {
+  title: PropTypes.any,
+}
+
+export default TaskBoard;
