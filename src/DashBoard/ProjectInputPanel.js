@@ -7,6 +7,7 @@ class ProjectInputPanel extends Component {
 
   componentDidMount() {
     window.addEventListener('click', this.handleDocumentClick);
+    // this.props.handleFocus()
   }
 
   componentWillUnmount() {

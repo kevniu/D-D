@@ -23,7 +23,6 @@ class ProjectList extends Component {
     this.saveProjectTitle       = this.saveProjectTitle.bind(this);
   }
 
-
   projectInputChange(event) {
     this.setState({
       newProjectInput: event.target.value,
@@ -44,16 +43,20 @@ class ProjectList extends Component {
     }
   }
 
-  editOnClick() {
-    if (!this.state.showInput) {
-      this.setState({
-        showInput: true,
-      })
-    }
+  editOnClick(e) {
+    // stop click event propgation to the input field
+    e.stopPropagation();
+    this.setState({
+      showInput: true,
+    })
+    // console.log("here onClick Button")
   }
 
   closeProjectInputPanel() {
-
+    this.setState({
+      showInput: false,
+    })
+    // console.log("here anywhere else")
   }
 
   displayProjects() {
