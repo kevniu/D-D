@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import update from 'react/lib/update';
+
 import Project           from './Project';
 import ProjectBuilder    from './ProjectBuilder';
 import ProjectInputPanel from './ProjectInputPanel';
@@ -66,13 +68,38 @@ class ProjectList extends Component {
   }
 
   moveProject(dragIndex, hoverIndex) {
-    const projectArr = this.state.projects;
-    const dragProject = projectArr[dragIndex];
-    projectArr.splice(hoverIndex, 0, dragProject)
+    // const projectArr = this.state.projects;
+    // const dragProject = projectArr[dragIndex];
+    // projectArr.splice(dragIndex, 1)
+    // projectArr.splice(hoverIndex, 0, dragProject)
+    // console.log(projectArr)
+    const { projects } = this.state;
+    const dragProject = projects[dragIndex];
 
-    this.setState({
-      projects: projectArr,
-    })
+    this.setState(update(this.state, {
+      projects: {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, dragProject]
+        ]
+      }
+    }));
+
+    // this.setState({
+    //   projects: {
+    //     $splice: [
+    //       [dragIndex, 1],
+    //       [hoverIndex, 0, dragProject]
+    //     ]
+    //   }
+    // })
+
+    // const { cards } = this.state;
+    // const dragCard = cards[dragIndex];
+    //
+    // this.setState(update(this.state, {
+
+    // }));
   }
 
   displayProjects() {
