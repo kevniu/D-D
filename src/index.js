@@ -5,6 +5,6 @@ import routes from './config/routes'
 import './index.css';
 
 ReactDOM.render(
-  <Router history={browserHistory}>{routes}</Router>,
+  <Router history={browserHistory} routes={routes} />,
   document.getElementById('root')
 );
