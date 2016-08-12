@@ -1,12 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
+import Helmet from "react-helmet";
+
 import './TaskBoard.css';
 
 class TaskBoard extends Component {
   render() {
-    console.log("called")
     return (
       <div className="container">
+        <Helmet title="something" />
+
         <div className="row">
           <div className="col-md-6 project-container">
             <h3 className="lead">{"Tasks"}</h3>

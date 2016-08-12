@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-import HeaderContainer from './Header/HeaderContainer'
+import HeaderContainer from './Header/HeaderContainer';
+
 
 class App extends Component {
 
