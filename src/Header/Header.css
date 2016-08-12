@@ -18,3 +18,7 @@
 .header nav {
   margin-right: 2em;
 }
+
+#header-title:hover {
+  text-decoration: none;
+}

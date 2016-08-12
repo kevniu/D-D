@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link }             from 'react-router';
 import './Header.css';
 
 class HeaderContainer extends Component {
@@ -13,7 +13,7 @@ class HeaderContainer extends Component {
             <li role="presentation"><a href="#">Contact</a></li>
           </ul>
         </nav>
-        <h3 className="text-muted">Fancy TODO</h3>
+        <Link id="header-title" to="/"><h3 className="text-muted">Fancy TODO</h3></Link>
       </div>
     );
   }
