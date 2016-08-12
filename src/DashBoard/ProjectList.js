@@ -16,10 +16,11 @@ class ProjectList extends Component {
       newProjectInput: false,
     }
 
-    this.editOnClick        = this.editOnClick.bind(this);
-    this.displayProjects    = this.displayProjects.bind(this);
-    this.projectInputChange = this.projectInputChange.bind(this);
-    this.saveProjectTitle   = this.saveProjectTitle.bind(this);
+    this.closeProjectInputPanel = this.closeProjectInputPanel.bind(this);
+    this.editOnClick            = this.editOnClick.bind(this);
+    this.displayProjects        = this.displayProjects.bind(this);
+    this.projectInputChange     = this.projectInputChange.bind(this);
+    this.saveProjectTitle       = this.saveProjectTitle.bind(this);
   }
 
   projectInputChange(event) {
@@ -42,10 +43,20 @@ class ProjectList extends Component {
     }
   }
 
-  editOnClick() {
+  editOnClick(e) {
+    // stop click event propgation to the input field
+    e.stopPropagation();
     this.setState({
-      showInput: true
+      showInput: true,
     })
+    // console.log("here onClick Button")
+  }
+
+  closeProjectInputPanel() {
+    this.setState({
+      showInput: false,
+    })
+    // console.log("here anywhere else")
   }
 
   displayProjects() {
@@ -57,7 +68,7 @@ class ProjectList extends Component {
   }
 
   render() {
-    const inputOrButton = this.state.showInput ? <ProjectInputPanel saveProjectTitle={this.saveProjectTitle} projectInputChange={this.projectInputChange} /> : <ProjectBuilder editOnClick={this.editOnClick} />
+    const inputOrButton = this.state.showInput ? <ProjectInputPanel closeProjectInputPanel={this.closeProjectInputPanel} saveProjectTitle={this.saveProjectTitle} projectInputChange={this.projectInputChange} /> : <ProjectBuilder editOnClick={this.editOnClick} />
     return (
       <div>
         <h3 className="lead">Projects</h3>
