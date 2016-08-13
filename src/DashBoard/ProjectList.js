@@ -39,7 +39,7 @@ class ProjectList extends Component {
 
   saveProjectTitle() {
     if (this.state.newProjectInput) {
-      this.state.projects.push(this.state.newProjectInput);
+      this.state.projects.push({content: this.state.newProjectInput, id: 26});
       this.setState({
         showInput: false,
         newProjectInput: false,
