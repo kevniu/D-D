@@ -8,7 +8,7 @@ import './Project.css';
 
 const style = {
   marginBottom: '1rem',
-  cursor: 'pointer'
+  cursor: "grab",
 };
 
 const ItemTypes = {
@@ -74,17 +74,21 @@ const projectTarget = {
 
 class Project extends Component {
 
-  // panelOnClick(e) {
-  //   e.preventDefault();
-  //   this.context.router.push('/taskboard')
-  // }
+  panelOnClick(e) {
+    e.preventDefault();
+    this.context.router.push('/taskboard')
+  }
 
   render() {
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
-      <div className="panel panel-primary" style={{ ...style, opacity }}>
+      <div
+        className="panel panel-primary"
+        style={{ ...style, opacity }}
+        onClick={this.panelOnClick.bind(this)}
+      >
         <div className="panel-body">
           <div className="media">
             <div className="media-left media-middle">
