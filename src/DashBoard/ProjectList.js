@@ -18,7 +18,7 @@ class ProjectList extends Component {
     super(props, context);
     this.state = {
       showInput: false,
-      projects: [{number: 1}, {number: 2}, {number: 3}, {number:4}],
+      projects: [{content: "dsafsd", id: 22}, {content: "Dfasfsdfsdfsa", id: 23}, {content: "dsafsfsd", id: 24}, {content: "sddd", id: 25}],
       newProjectInput: false,
     }
 
@@ -68,11 +68,6 @@ class ProjectList extends Component {
   }
 
   moveProject(dragIndex, hoverIndex) {
-    // const projectArr = this.state.projects;
-    // const dragProject = projectArr[dragIndex];
-    // projectArr.splice(dragIndex, 1)
-    // projectArr.splice(hoverIndex, 0, dragProject)
-    // console.log(projectArr)
     const { projects } = this.state;
     const dragProject = projects[dragIndex];
 
@@ -84,28 +79,12 @@ class ProjectList extends Component {
         ]
       }
     }));
-
-    // this.setState({
-    //   projects: {
-    //     $splice: [
-    //       [dragIndex, 1],
-    //       [hoverIndex, 0, dragProject]
-    //     ]
-    //   }
-    // })
-
-    // const { cards } = this.state;
-    // const dragCard = cards[dragIndex];
-    //
-    // this.setState(update(this.state, {
-
-    // }));
   }
 
   displayProjects() {
     return this.state.projects.map((project, index) => {
       return (
-        <Project key={index} index={index} title={project.number} moveProject={this.moveProject} />
+        <Project key={project.id} index={index} id={project.id} title={project.content} moveProject={this.moveProject} />
       )
     })
   }

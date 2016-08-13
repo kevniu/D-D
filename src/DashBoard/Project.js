@@ -6,6 +6,11 @@ import flow from 'lodash/flow';
 
 import './Project.css';
 
+const style = {
+  marginBottom: '1rem',
+  cursor: 'pointer'
+};
+
 const ItemTypes = {
   PROJECT: "project"
 };
@@ -13,7 +18,7 @@ const ItemTypes = {
 const projectSource = {
   beginDrag(props) {
     return {
-      id: props.title,
+      id: props.id,
       index: props.index
     };
   }
@@ -79,14 +84,14 @@ class Project extends Component {
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
-      <div className="panel panel-primary" style={{ opacity: opacity }}>
+      <div className="panel panel-primary" style={{ ...style, opacity }}>
         <div className="panel-body">
           <div className="media">
             <div className="media-left media-middle">
               <img className="general-icon" src='../../png/rocket-ship.png' role="presentation" />
             </div>
             <div className="media-body">
-              Project {this.props.title}
+              {this.props.title}
             </div>
           </div>
 
