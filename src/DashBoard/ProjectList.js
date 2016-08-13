@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import update from 'react/lib/update';
+
 import Project           from './Project';
 import ProjectBuilder    from './ProjectBuilder';
 import ProjectInputPanel from './ProjectInputPanel';
@@ -16,7 +18,7 @@ class ProjectList extends Component {
     super(props, context);
     this.state = {
       showInput: false,
-      projects: [{number: 1}, {number: 2}, {number: 3}, {number:4}],
+      projects: [{content: "dsafsd", id: 22}, {content: "Dfasfsdfsdfsa", id: 23}, {content: "dsafsfsd", id: 24}, {content: "sddd", id: 25}],
       newProjectInput: false,
     }
 
@@ -66,19 +68,23 @@ class ProjectList extends Component {
   }
 
   moveProject(dragIndex, hoverIndex) {
-    const projectArr = this.state.projects;
-    const dragProject = projectArr[dragIndex];
-    projectArr.splice(hoverIndex, 0, dragProject)
+    const { projects } = this.state;
+    const dragProject = projects[dragIndex];
 
-    this.setState({
-      projects: projectArr,
-    })
+    this.setState(update(this.state, {
+      projects: {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, dragProject]
+        ]
+      }
+    }));
   }
 
   displayProjects() {
     return this.state.projects.map((project, index) => {
       return (
-        <Project key={index} index={index} title={project.number} moveProject={this.moveProject} />
+        <Project key={project.id} index={index} id={project.id} title={project.content} moveProject={this.moveProject} />
       )
     })
   }
