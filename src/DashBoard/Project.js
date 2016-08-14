@@ -8,7 +8,7 @@ import './Project.css';
 
 const style = {
   marginBottom: '1rem',
-  cursor: "grab",
+  // cursor: "pointer",
 };
 
 const ItemTypes = {
@@ -82,10 +82,11 @@ class Project extends Component {
   render() {
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
     const opacity = isDragging ? 0 : 1;
+    const grabbedClassName = isDragging ? "being-grabbed" : "";
 
     return connectDragSource(connectDropTarget(
       <div
-        className="panel panel-primary"
+        className={`panel panel-primary grabbable ${grabbedClassName}`}
         style={{ ...style, opacity }}
         onClick={this.panelOnClick.bind(this)}
       >

@@ -29,6 +29,7 @@ class ProjectInputPanel extends Component {
 
           <div className="input-group">
             <input
+              autoFocus={true}
               type="text"
               className="form-control"
               placeholder="New project name"
